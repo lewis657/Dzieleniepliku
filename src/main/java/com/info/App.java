@@ -18,38 +18,32 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
+                ArrayList tablica = new ArrayList();
+        ArrayList tab = new ArrayList();
+        //String [] tab = new String[210];
 
-
-//        URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
-//        Scanner s = new Scanner(url.openStream());
-//        String line = s.nextLine();
-//        System.out.println(line);
-
-//        URLConnection connection = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt").openStream();
-//        InputStream stream = connection.getInputStream();
-//
-//        System.out.println("total size: "+connection.getContentLength();
-
-//        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-//        FileOutputStream fileOutputStream = new FileOutputStream(targetFile);
-//
-//        int count;
-//        byte buffer[] = new byte[1024];
-//
-//        while ((count = bufferedInputStream.read(buffer, 0, buffer.length)) != -1)
-//            fileOutputStream.write(buffer, 0, count);
-        //git status
-        //test
-
-
-        ArrayList tablica = new ArrayList();
-        try {
 
             URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
 
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String line;
+//        Scanner s =  new Scanner(new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt").openStream());
+//
+//        List<String> names = new ArrayList<String>();
+//        while (s.hasNext())
+//        {
+//            s.nextInt();         // read and skip 'id'
+//            names.add(s.next()); // read and store 'name'
+//            s.nextInt();         // read and skip 'age'
+//        }
+//
+//        for (String name: names)
+//        {
+//            System.out.println(name);
+//        }
+
+
 
             while ((line = in.readLine()) != null) {
 
@@ -60,19 +54,7 @@ public class App
 
             in.close();
 
-        }
 
-	        catch (MalformedURLException e) {
-
-        System.out.println("Malformed URL: " + e.getMessage());
-
-    }
-
-	        catch (IOException e) {
-
-        System.out.println("I/O Error: " + e.getMessage());
-
-    }
 
          int N = tablica.size();
        // N = N%2;
@@ -83,11 +65,17 @@ public class App
         int size = 1;
         for (int start = 8; start < tablica.size(); start += size) {
             int end = Math.min(start + size, tablica.size());
-            System.out.println(end);
-            List<String> sublist1 = tablica.subList(start, 25);
-            List<String> sublist2 = tablica.subList(54, 104);
+            //System.out.println(end);
+            List<String> sublist = tablica.subList(start, end);
+            //List<String> sublist2 = tablica.subList(54, 104);
+            tab.add(sublist);
 
-            System.out.println(sublist1);
+           // System.out.println(sublist);
+            //tab.add(start);
+
         }
+        System.out.println(tab);
+
+
     }
 }
