@@ -15,24 +15,24 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
-        ArrayList tablica = new ArrayList();
+        ArrayList tab = new ArrayList();
         URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
         String line;
         while ((line = in.readLine()) != null) {
-            tablica.add(line);
+            tab.add(line);
         }
         PrintStream fileStream = new PrintStream("all.txt");
         System.setOut(fileStream);
         int size = 1;
         // od 8 bo pomijamy heder
-        for (int start = 8; start < tablica.size(); start += size) {
-            int end = Math.min(start + size, tablica.size());
+        for (int start = 8; start < tab.size(); start += size) {
+            int end = Math.min(start + size, tab.size());
 
-            List<String> sublist = tablica.subList(start, end);
+            List<String> sublist = tab.subList(start, end);
             //tab.add(start);
-            for (String test : sublist) {
-                System.out.format("[%s]%n", test.replaceAll("[ ]{3,}", "\r"));
+            for (String reply : sublist) {
+                System.out.format("[%s]%n", reply.replaceAll("[ ]{3,}", "\r"));
             }
         }
         final File file = new File("all.txt");
