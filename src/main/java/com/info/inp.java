@@ -31,15 +31,15 @@ public class inp
 
 //regex to break on any ammount of spaces
        // String regex = "\\s*     \\s*";
-        String regex = "[a-z]";
+        String regex = "ISO 8859-1 (1987)";
 
 
-        String[] header = nextLine.split(regex);
-        String[] row = new String[155000000];
+
+     //   String[] row = new String[155000000];
 
         while (scanner.hasNext()) {
-            //String[] row = scanner.nextLine().split(regex);
-             row = scanner.nextLine().split(regex);
+            String[] row = scanner.nextLine().split(regex);
+             //row = scanner.nextLine().split(regex);
           //  String row = scanner.nextLine();
 
            // scanner.delimiter()
@@ -56,12 +56,10 @@ public class inp
 //                System.out.println(row[i]);
 //            }
 
-           // System.out.println(row[0]);//first column (ID)
+            System.out.println(row[0]);//first column (ID)
+
         }
-        for (int index =0; index < row.length; index++){
-            row[index] = row[index].replace(" ", "%20");
-            System.out.println(row[index]);
-        }
+        //System.out.println(nextLine);
 
 
     }

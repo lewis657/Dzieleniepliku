@@ -1,81 +1,68 @@
 package com.info;
 
-import javafx.scene.transform.Scale;
-
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+        import java.io.*;
+        import java.net.URL;
+        import java.nio.file.Files;
+        import java.nio.file.Paths;
+        import java.nio.file.ReadOnlyFileSystemException;
+        import java.util.*;
 
 /**
- * Hello world!
+ * Zadanie domowe tabele
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args ) throws IOException
     {
-                ArrayList tablica = new ArrayList();
-        ArrayList tab = new ArrayList();
-        //String [] tab = new String[210];
-
-
-            URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String line;
-//        Scanner s =  new Scanner(new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt").openStream());
-//
-//        List<String> names = new ArrayList<String>();
-//        while (s.hasNext())
-//        {
-//            s.nextInt();         // read and skip 'id'
-//            names.add(s.next()); // read and store 'name'
-//            s.nextInt();         // read and skip 'age'
-//        }
-//
-//        for (String name: names)
-//        {
-//            System.out.println(name);
-//        }
-
-
-
-            while ((line = in.readLine()) != null) {
-
-                tablica.add(line);
-               // System.out.println(line);
-
-            }
-
-            in.close();
-
-
-
-         int N = tablica.size();
-       // N = N%2;
-      //  System.out.print(N);
-
-       // System.out.println(tablica);
-
+        ArrayList tablica = new ArrayList();
+        URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
+        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        String line;
+        while ((line = in.readLine()) != null) {
+            tablica.add(line);
+        }
+        PrintStream fileStream = new PrintStream("all.txt");
+        System.setOut(fileStream);
         int size = 1;
+        // od 8 bo pomijamy heder
         for (int start = 8; start < tablica.size(); start += size) {
             int end = Math.min(start + size, tablica.size());
-            //System.out.println(end);
-            List<String> sublist = tablica.subList(start, end);
-            //List<String> sublist2 = tablica.subList(54, 104);
-            tab.add(sublist);
 
-           // System.out.println(sublist);
+            List<String> sublist = tablica.subList(start, end);
             //tab.add(start);
+            for (String test : sublist) {
+                System.out.format("[%s]%n", test.replaceAll("[ ]{3,}", "\r"));
+            }
+        }
+        final File file = new File("all.txt");
+        final Scanner fileRead = new Scanner(file);
+        int lineCount = 0;
+        int i = 0;
+        PrintWriter odds = new PrintWriter("odds.txt");
+        PrintWriter even = new PrintWriter("even.txt");
+        while (fileRead.hasNextLine())
+        {
+            lineCount++;
+            i = lineCount % 2;
+            final String str = fileRead.nextLine();
+            if (i == 1 && lineCount>1 )
+            {
+             odds.print(str);
+             odds.print("\r");
+
+            }
+            else
+            {
+                even.print(str);
+                even.print("\r");
+            }
 
         }
-        System.out.println(tab);
-
+        fileRead.close();
+        odds.close();
+        even.close();
+        in.close();
 
     }
 }
