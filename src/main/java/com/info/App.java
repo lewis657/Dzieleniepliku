@@ -30,9 +30,13 @@ public class App
             int end = Math.min(start + size, tab.size());
 
             List<String> sublist = tab.subList(start, end);
+
             //tab.add(start);
+
             for (String reply : sublist) {
-                System.out.format("[%s]%n", reply.replaceAll("[ ]{3,}", "\r"));
+
+                   // reply.replaceAll("\\[|\\]", "");
+                System.out.format("%s%n", reply.replaceAll("[ ]{3,}", "\r"));
             }
         }
         final File file = new File("all.txt");
